@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow, noarchive" />
-  <title>MUSEIC | Private Listening</title>
+  <title>MUSEIC | Private Access</title>
 
   <style>
     * {
@@ -18,7 +18,7 @@
       place-items: center;
       padding: 24px;
       background: #080808;
-      color: #f4f1eb;
+      color: #f5f1ea;
       font-family: Arial, Helvetica, sans-serif;
     }
 
@@ -28,35 +28,56 @@
     }
 
     .brand {
-      margin-bottom: 42px;
+      margin-bottom: 36px;
       font-size: 0.78rem;
       letter-spacing: 0.42em;
       text-transform: uppercase;
-      opacity: 0.72;
+      opacity: 0.7;
     }
 
     h1 {
       margin: 0 0 14px;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(2.2rem, 9vw, 3.8rem);
+      font-size: clamp(2.4rem, 10vw, 4rem);
       font-weight: 400;
-      letter-spacing: -0.03em;
     }
 
     p {
-      margin: 0 auto 34px;
+      margin: 0 auto 30px;
       max-width: 330px;
       color: #aaa59d;
-      font-size: 0.95rem;
       line-height: 1.6;
     }
 
-    .status {
-      margin-top: 26px;
-      font-size: 0.75rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      opacity: 0.5;
+    input {
+      width: 100%;
+      padding: 15px 16px;
+      border: 1px solid #2d2d2d;
+      border-radius: 10px;
+      background: #111;
+      color: white;
+      font-size: 1rem;
+      text-align: center;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 14px;
+      padding: 15px;
+      border: 0;
+      border-radius: 10px;
+      background: #e7ded1;
+      color: #111;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    #message {
+      min-height: 20px;
+      margin-top: 18px;
+      color: #b6a99a;
+      font-size: 0.85rem;
     }
   </style>
 </head>
@@ -68,10 +89,50 @@
     <h1>Private Listening</h1>
 
     <p>
-      A private artist experience is being prepared.
+      This page contains unreleased material and is intended for invited listeners only.
     </p>
 
-    <div class="status">Access page coming next</div>
+    <input
+      id="password"
+      type="password"
+      placeholder="Enter access code"
+      autocomplete="off"
+    />
+
+    <button onclick="unlock()">UNLOCK</button>
+
+    <div id="message"></div>
   </main>
+
+  <script>
+    async function unlock() {
+      const input = document.getElementById("password").value.trim();
+      const message = document.getElementById("message");
+
+      const encoded = new TextEncoder().encode(input.toLowerCase());
+      const hashBuffer = await crypto.subtle.digest("SHA-256", encoded);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const hashHex = hashArray
+        .map(byte => byte.toString(16).padStart(2, "0"))
+        .join("");
+
+      const correctHash =
+        "bd29264a067e0d547e0e4ac3542363a55edac79055d5fe851a7d6d9412f0ef79";
+
+      if (hashHex === correctHash) {
+        window.location.href = "music.html";
+      } else {
+        message.textContent = "Access code not recognized.";
+      }
+    }
+
+    document
+      .getElementById("password")
+      .addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+          unlock();
+        }
+      });
+  </script>
 </body>
 </html>
