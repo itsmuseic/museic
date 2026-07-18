@@ -104,35 +104,48 @@
     <div id="message"></div>
   </main>
 
-  <script>
-    async function unlock() {
-      const input = document.getElementById("password").value.trim();
-      const message = document.getElementById("message");
+<script>
+  const routes = {
+    "listen": "/listen/",
+    "who-is-she": "/who-is-she/",
+    "behind-the-sound": "/behind-the-sound/"
+  };
 
-      const encoded = new TextEncoder().encode(input.toLowerCase());
-      const hashBuffer = await crypto.subtle.digest("SHA-256", encoded);
-      const hashArray = Array.from(new Uint8Array(hashBuffer));
-      const hashHex = hashArray
-        .map(byte => byte.toString(16).padStart(2, "0"))
-        .join("");
+  function getTargetPage() {
+    const requestedPage = new URLSearchParams(window.location.search).get("to");
+    return routes[requestedPage] || "/listen/";
+  }
 
-      const correctHash =
-        "bd29264a067e0d547e0e4ac3542363a55edac79055d5fe851a7d6d9412f0ef79";
+  async function unlock() {
+    const input = document.getElementById("password").value.trim();
+    const message = document.getElementById("message");
 
-      if (hashHex === correctHash) {
-        window.location.href = "/listen/";
-      } else {
-        message.textContent = "Access code not recognized.";
-      }
+    const encoded = new TextEncoder().encode(input.toLowerCase());
+    const hashBuffer = await crypto.subtle.digest("SHA-256", encoded);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+
+    const hashHex = hashArray
+      .map(byte => byte.toString(16).padStart(2, "0"))
+      .join("");
+
+    const correctHash =
+      "e3f6621fc7e292ffe5b2818e7949ec88f739ca9e82cd27f3270afb6a662805e5";
+
+    if (hashHex === correctHash) {
+      sessionStorage.setItem("museicAccess", "granted");
+      window.location.href = getTargetPage();
+    } else {
+      message.textContent = "Access code not recognized.";
     }
+  }
 
-    document
-      .getElementById("password")
-      .addEventListener("keydown", function (event) {
-        if (event.key === "Enter") {
-          unlock();
-        }
-      });
-  </script>
+  document
+    .getElementById("password")
+    .addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        unlock();
+      }
+    });
+</script>
 </body>
 </html>
