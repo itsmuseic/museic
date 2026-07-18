@@ -115,7 +115,9 @@
     const requestedPage = new URLSearchParams(window.location.search).get("to");
     return routes[requestedPage] || "/listen/";
   }
-
+if (sessionStorage.getItem("museicAccess") === "granted") {
+  window.location.replace(getTargetPage());
+}
   async function unlock() {
     const input = document.getElementById("password").value.trim();
     const message = document.getElementById("message");
