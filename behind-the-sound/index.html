@@ -111,6 +111,11 @@
       }
     }
   </style>
+  <script>
+  if (sessionStorage.getItem("museicAccess") !== "granted") {
+    window.location.replace("/?to=behind-the-sound");
+  }
+</script>
 </head>
 
 <body>
