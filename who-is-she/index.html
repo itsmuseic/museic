@@ -148,6 +148,11 @@
       }
     }
   </style>
+  <script>
+  if (sessionStorage.getItem("museicAccess") !== "granted") {
+    window.location.replace("/?to=who-is-she");
+  }
+</script>
 </head>
 
 <body>
