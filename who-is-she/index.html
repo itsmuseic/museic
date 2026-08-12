@@ -254,6 +254,19 @@
     </nav>
 
   </main>
-<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d9a67871d5ff428fa2f0afa1881df443"}'></script><!-- End Cloudflare Web Analytics -->
+<!-- Cloudflare Web Analytics -->
+<script>
+  if (localStorage.getItem("museicOwnerMode") !== "enabled") {
+    const analyticsScript = document.createElement("script");
+    analyticsScript.type = "module";
+    analyticsScript.src = "https://static.cloudflareinsights.com/beacon.min.js";
+    analyticsScript.setAttribute(
+      "data-cf-beacon",
+      '{"token":"d9a67871d5ff428fa2f0afa1881df443"}'
+    );
+    document.body.appendChild(analyticsScript);
+  }
+</script>
+<!-- End Cloudflare Web Analytics -->
 </body>
 </html>
