@@ -7,136 +7,57 @@
 <title>MUSEIC | Music</title>
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#090909;color:#f4efe8;font-family:Arial,Helvetica,sans-serif;}
+.container{width:min(900px,92%);margin:auto;padding:70px 0;}
+h1{font-size:52px;margin-bottom:10px;}
+.subtitle{opacity:.65;margin-bottom:32px;letter-spacing:1px;}
+.update-note{
+  border:1px solid rgba(215,194,162,.32);
+  background:linear-gradient(135deg,rgba(215,194,162,.10),rgba(255,255,255,.025));
+  border-radius:16px;
+  padding:18px 20px;
+  margin-bottom:42px;
+  line-height:1.55;
 }
-
-body{
-
-background:#090909;
-color:#f4efe8;
-font-family:Arial,Helvetica,sans-serif;
-
+.update-note strong{display:block;letter-spacing:.08em;font-size:12px;margin-bottom:5px;color:#d7c2a2;}
+.song{border:1px solid rgba(255,255,255,.08);padding:30px;margin-bottom:25px;border-radius:18px;background:#111;}
+.song h2{margin-bottom:8px;}
+.song iframe{display:block;width:min(100%,420px);height:min(78vw,420px);margin:0 auto;border:0;}
+.status{display:inline-block;padding:6px 12px;border-radius:30px;font-size:13px;margin-bottom:18px;background:#222;}
+.buttons{display:flex;gap:15px;margin-top:20px;flex-wrap:wrap;}
+a{text-decoration:none;color:white;}
+.btn{padding:12px 22px;border-radius:12px;background:#d7c2a2;color:#111;font-weight:bold;border:0;cursor:pointer;font:inherit;}
+.btn.secondary{background:#2a2a2a;color:white;}
+.note-box{
+  margin-top:48px;
+  padding:30px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  background:#0e0e0e;
 }
-
-.container{
-
-width:min(900px,92%);
-margin:auto;
-padding:70px 0;
-
+.note-box h2{font-size:28px;margin-bottom:8px;}
+.note-box p{opacity:.62;line-height:1.5;margin-bottom:18px;}
+.note-box textarea{
+  width:100%;
+  min-height:125px;
+  resize:vertical;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.12);
+  background:#151515;
+  color:#f4efe8;
+  padding:15px;
+  font:inherit;
+  outline:none;
 }
-
-h1{
-
-font-size:52px;
-margin-bottom:10px;
-
+.note-box textarea:focus{border-color:rgba(215,194,162,.6);}
+.note-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:14px;}
+.note-hint{font-size:12px;opacity:.45;}
+@media(max-width:600px){
+  .container{padding:48px 0;}
+  h1{font-size:42px;}
+  .song,.note-box{padding:22px;}
 }
-
-.subtitle{
-
-opacity:.65;
-margin-bottom:60px;
-letter-spacing:1px;
-
-}
-
-.song{
-
-border:1px solid rgba(255,255,255,.08);
-
-padding:30px;
-
-margin-bottom:25px;
-
-border-radius:18px;
-
-background:#111;
-
-}
-
-.song h2{
-
-margin-bottom:8px;
-
-}
-
-.song iframe{
-
-display:block;
-
-width:min(100%,420px);
-
-height:min(78vw,420px);
-
-margin:0 auto;
-
-border:0;
-
-}
-
-.status{
-
-display:inline-block;
-
-padding:6px 12px;
-
-border-radius:30px;
-
-font-size:13px;
-
-margin-bottom:18px;
-
-background:#222;
-
-}
-
-.buttons{
-
-display:flex;
-
-gap:15px;
-
-margin-top:20px;
-
-flex-wrap:wrap;
-
-}
-
-a{
-
-text-decoration:none;
-
-color:white;
-
-}
-
-.btn{
-
-padding:12px 22px;
-
-border-radius:12px;
-
-background:#d7c2a2;
-
-color:#111;
-
-font-weight:bold;
-
-}
-
-.btn.secondary{
-
-background:#2a2a2a;
-
-color:white;
-
-}
-
 </style>
 <script>
 if (sessionStorage.getItem("museicAccess") !== "granted") {
@@ -146,72 +67,115 @@ if (sessionStorage.getItem("museicAccess") !== "granted") {
 </head>
 
 <body>
-
 <div class="container">
 
 <h1>MUSIC</h1>
+<p class="subtitle">Private listening selection.</p>
 
-<p class="subtitle">
-Private listening selection.
-</p>
+<div class="update-note">
+  <strong>NEXT DROP</strong>
+  New demos arrive Monday, August 24.
+</div>
 
-<div class="song">
-
+<div class="song" data-song="your-potency">
 <h2>YOUR POTENCY</h2>
-
 <span class="status">DEMO</span>
-<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%3Atracks%3A2361199556%3Fsecret_token%3Ds-H6w3hHoct0a&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&show_artwork=true&visual=true"></iframe>
+<iframe class="sc-player" title="YOUR POTENCY" width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%3Atracks%3A2361199556%3Fsecret_token%3Ds-H6w3hHoct0a&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&show_artwork=true&visual=true"></iframe>
 </div>
-<div class="song">
 
+<div class="song" data-song="why-you-lyin">
 <h2>WHY YOU LYIN'</h2>
-
 <span class="status">DEMO</span>
-<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%3Atracks%3A2361246257%3Fsecret_token%3Ds-whW4wrfirav&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&show_artwork=true&visual=true"></iframe>
+<iframe class="sc-player" title="WHY YOU LYIN'" width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%3Atracks%3A2361246257%3Fsecret_token%3Ds-whW4wrfirav&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&show_artwork=true&visual=true"></iframe>
 </div>
-<div class="song">
 
+<div class="song" data-song="wooman">
 <h2>WOOMAN</h2>
-
 <span class="status">DEMO</span>
-<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%3Atracks%3A2361452072%3Fsecret_token%3Ds-MuQVT0rszvD&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&show_artwork=true&visual=true"></iframe>
+<iframe class="sc-player" title="WOOMAN" width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%3Atracks%3A2361452072%3Fsecret_token%3Ds-MuQVT0rszvD&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&show_artwork=true&visual=true"></iframe>
 </div>
-<div class="song">
 
+<div class="song" data-song="wild-ride">
 <h2>WILD RIDE</h2>
-
 <span class="status">DEMO</span>
-<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%3Atracks%3A2361453803%3Fsecret_token%3Ds-rrMNL5OeOB5&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&show_artwork=true&visual=true"></iframe>
+<iframe class="sc-player" title="WILD RIDE" width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%3Atracks%3A2361453803%3Fsecret_token%3Ds-rrMNL5OeOB5&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&show_artwork=true&visual=true"></iframe>
 </div>
-<div class="song">
 
+<div class="song" data-song="friyay">
 <h2>FRIYAY</h2>
-
 <span class="status">DEMO</span>
-<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%3Atracks%3A2361467453%3Fsecret_token%3Ds-msTnt80LhM0&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&show_artwork=true&visual=true"></iframe>
+<iframe class="sc-player" title="FRIYAY" width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%3Atracks%3A2361467453%3Fsecret_token%3Ds-msTnt80LhM0&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&show_artwork=true&visual=true"></iframe>
 </div>
-<div class="song">
 
+<div class="song" data-song="down-to-one">
 <h2>DOWN TO ONE</h2>
-
 <span class="status">FULL VERSION</span>
-
-<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%3Atracks%3A2361468110%3Fsecret_token%3Ds-jCmrPFpHfps&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&show_artwork=true&visual=true"></iframe>
+<iframe class="sc-player" title="DOWN TO ONE" width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%3Atracks%3A2361468110%3Fsecret_token%3Ds-jCmrPFpHfps&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&show_artwork=true&visual=true"></iframe>
 </div>
 
-<div class="song">
-
+<div class="song" data-song="maze">
 <h2>MAZE</h2>
-
 <span class="status">BONUS DEMO</span>
-
-<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?visual=true&url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F2380348914&show_artwork=true&secret_token=s-wmEh0WGmZSV"></iframe>
+<iframe class="sc-player" title="MAZE" width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?visual=true&url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F2380348914&show_artwork=true&secret_token=s-wmEh0WGmZSV"></iframe>
 </div>
 
-  <div style="text-align:center;margin:60px 0 20px;">
+<section class="note-box" aria-labelledby="leave-note-title">
+  <h2 id="leave-note-title">LEAVE A NOTE</h2>
+  <p>If something stayed with you, leave a line. Even one is enough.</p>
+  <textarea id="privateNote" maxlength="1200" placeholder="Write something..."></textarea>
+  <div class="note-actions">
+    <button class="btn" id="sendNote" type="button">SEND NOTE</button>
+    <span class="note-hint">Your mail app will open before anything is sent.</span>
+  </div>
+</section>
+
+<div style="text-align:center;margin:60px 0 20px;">
   <a href="/behind-the-sound/" class="btn secondary" style="margin:8px;">BEHIND THE SOUND</a>
   <a href="/who-is-she/" class="btn secondary" style="margin:8px;">WHO IS SHE?</a>
 </div>
+
+<script src="https://w.soundcloud.com/player/api.js"></script>
+<script>
+(function(){
+  function track(eventName, song){
+    if (localStorage.getItem("museicOwnerMode") === "enabled") return;
+    const path = "/__museic_event__/" + encodeURIComponent(eventName) + "/" + encodeURIComponent(song) + "?t=" + Date.now();
+    fetch(path, {method:"GET", cache:"no-store", keepalive:true}).catch(function(){});
+  }
+
+  document.querySelectorAll(".song[data-song]").forEach(function(card){
+    const iframe = card.querySelector("iframe.sc-player");
+    if (!iframe || !window.SC || !SC.Widget) return;
+    const song = card.getAttribute("data-song");
+    const widget = SC.Widget(iframe);
+    let firstPlayTracked = false;
+
+    widget.bind(SC.Widget.Events.PLAY, function(){
+      track(firstPlayTracked ? "replay" : "play", song);
+      firstPlayTracked = true;
+    });
+
+    widget.bind(SC.Widget.Events.FINISH, function(){
+      track("finish", song);
+    });
+  });
+
+  const sendNote = document.getElementById("sendNote");
+  const note = document.getElementById("privateNote");
+  sendNote.addEventListener("click", function(){
+    const text = note.value.trim();
+    if (!text) {
+      note.focus();
+      return;
+    }
+    track("note-intent", "private-note");
+    const subject = encodeURIComponent("A note for MUSEIC");
+    const body = encodeURIComponent(text);
+    window.location.href = "mailto:museicofficial@gmail.com?subject=" + subject + "&body=" + body;
+  });
+})();
+</script>
+
 <!-- Cloudflare Web Analytics -->
 <script>
   if (localStorage.getItem("museicOwnerMode") !== "enabled") {
@@ -226,5 +190,6 @@ Private listening selection.
   }
 </script>
 <!-- End Cloudflare Web Analytics -->
+
 </body>
 </html>
